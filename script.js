@@ -6,6 +6,7 @@ const minutesDisplay = document.getElementById('minutes');
 const secondsDisplay = document.getElementById('seconds');
 const startButton = document.getElementById('start');
 const resetButton = document.getElementById('reset');
+const addTimeButton = document.getElementById('add-time');
 
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
@@ -62,6 +63,11 @@ function switchMode(mode) {
     resetTimer();
 }
 
+function addFiveMinutes() {
+    timeLeft += 5 * 60;
+    updateDisplay();
+}
+
 // Initialize
 timeLeft = 25 * 60;
 updateDisplay();
@@ -69,4 +75,5 @@ updateDisplay();
 // Event listeners
 startButton.addEventListener('click', startTimer);
 resetButton.addEventListener('click', resetTimer);
-document.getElementById('mode-switch').addEventListener('click', () => switchMode(isWorkMode ? 'break' : 'work')); 
+document.getElementById('mode-switch').addEventListener('click', () => switchMode(isWorkMode ? 'break' : 'work'));
+addTimeButton.addEventListener('click', addFiveMinutes); 

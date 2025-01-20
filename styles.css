@@ -72,6 +72,15 @@ h1 {
     background-color: #475569;
 }
 
+#add-time {
+    background-color: #2563eb;
+    color: white;
+}
+
+#add-time:hover {
+    background-color: #1d4ed8;
+}
+
 .mode-toggle {
     position: absolute;
     top: 1.25rem;
