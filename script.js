@@ -44,8 +44,15 @@ function resetTimer() {
 
 function switchMode(mode) {
     isWorkMode = mode === 'work';
-    const icon = document.querySelector('#mode-switch i');
-    icon.className = isWorkMode ? 'fas fa-sun' : 'fas fa-moon';
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
+    if (isWorkMode) {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+    } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+    }
     resetTimer();
 }
 

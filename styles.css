@@ -16,6 +16,8 @@ body {
     border-radius: 16px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     position: relative;
+    min-width: 320px;
+    margin: 1rem;
 }
 
 h1 {
@@ -77,6 +79,7 @@ h1 {
     background-color: #2563eb;
     border-radius: 8px;
     padding: 0.5rem 0.75rem;
+    z-index: 10;
 }
 
 #mode-switch {
@@ -90,7 +93,20 @@ h1 {
     line-height: 1;
 }
 
+#mode-switch svg {
+    color: #e2e8f0;
+    transition: all 0.3s ease;
+}
+
 #mode-switch:hover {
     transform: scale(1.1);
     color: white;
+}
+
+#mode-switch:hover svg {
+    color: white;
+}
+
+.moon-icon {
+    display: none;
 } 
