@@ -15,13 +15,15 @@ body {
     padding: 2.5rem;
     border-radius: 16px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    position: relative;
 }
 
 h1 {
     font-size: 1.875rem;
     font-weight: 700;
+    margin-top: 2rem;
     margin-bottom: 2rem;
-    color: #1e3a8a;
+    color: #111827;
 }
 
 .timer {
@@ -60,40 +62,35 @@ h1 {
 }
 
 #reset {
-    background-color: #ef4444;
+    background-color: #64748b;
     color: white;
 }
 
 #reset:hover {
-    background-color: #dc2626;
+    background-color: #475569;
 }
 
-.toggle-container {
-    display: inline-flex;
-    background-color: #e2e8f0;
-    padding: 4px;
-    border-radius: 9999px;
-    margin-top: 1.5rem;
-}
-
-.mode button {
-    font-size: 0.9rem;
-    padding: 0.5rem 1.25rem;
-    border: none;
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-color: transparent;
-    color: #64748b;
-    font-weight: 500;
-}
-
-.mode button.active {
+.mode-toggle {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
     background-color: #2563eb;
-    color: white;
-    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
 }
 
-.mode button:not(.active):hover {
-    background-color: #cbd5e1;
+#mode-switch {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: #e2e8f0;
+    padding: 0;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+#mode-switch:hover {
+    transform: scale(1.1);
+    color: white;
 } 

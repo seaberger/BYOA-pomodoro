@@ -6,8 +6,6 @@ const minutesDisplay = document.getElementById('minutes');
 const secondsDisplay = document.getElementById('seconds');
 const startButton = document.getElementById('start');
 const resetButton = document.getElementById('reset');
-const workButton = document.getElementById('work');
-const breakButton = document.getElementById('break');
 
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
@@ -46,8 +44,8 @@ function resetTimer() {
 
 function switchMode(mode) {
     isWorkMode = mode === 'work';
-    workButton.classList.toggle('active', isWorkMode);
-    breakButton.classList.toggle('active', !isWorkMode);
+    const icon = document.querySelector('#mode-switch i');
+    icon.className = isWorkMode ? 'fas fa-sun' : 'fas fa-moon';
     resetTimer();
 }
 
@@ -58,5 +56,4 @@ updateDisplay();
 // Event listeners
 startButton.addEventListener('click', startTimer);
 resetButton.addEventListener('click', resetTimer);
-workButton.addEventListener('click', () => switchMode('work'));
-breakButton.addEventListener('click', () => switchMode('break')); 
+document.getElementById('mode-switch').addEventListener('click', () => switchMode(isWorkMode ? 'break' : 'work')); 
