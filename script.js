@@ -126,4 +126,18 @@ document.getElementById('focus-input').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         document.getElementById('focus-submit').click();
     }
+});
+
+// Add event listener for clicking outside the modal
+document.getElementById('focus-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'focus-modal') {
+        hideFocusModal();
+    }
+});
+
+// Add event listener for Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.getElementById('focus-modal').style.display === 'flex') {
+        hideFocusModal();
+    }
 }); 
