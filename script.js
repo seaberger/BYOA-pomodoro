@@ -1,6 +1,7 @@
 let timeLeft;
 let timerId = null;
 let isWorkMode = true;
+let currentFocus = '';
 
 const minutesDisplay = document.getElementById('minutes');
 const secondsDisplay = document.getElementById('seconds');
@@ -21,7 +22,35 @@ function updateDisplay() {
     document.title = `${timeString} - Pomodoro Timer`;
 }
 
+function showFocusModal() {
+    const modal = document.getElementById('focus-modal');
+    const focusInput = document.getElementById('focus-input');
+    modal.style.display = 'flex';
+    focusInput.focus();
+}
+
+function hideFocusModal() {
+    const modal = document.getElementById('focus-modal');
+    modal.style.display = 'none';
+}
+
+function updateFocusDisplay() {
+    const focusDisplay = document.getElementById('focus-display');
+    if (currentFocus && isWorkMode) {
+        focusDisplay.textContent = `Focus: ${currentFocus}`;
+        focusDisplay.style.display = 'block';
+    } else {
+        focusDisplay.style.display = 'none';
+        focusDisplay.textContent = '';
+    }
+}
+
 function startTimer() {
+    if (timerId === null && isWorkMode && !currentFocus) {
+        showFocusModal();
+        return;
+    }
+    
     if (timerId === null) {
         timerId = setInterval(() => {
             timeLeft--;
@@ -45,7 +74,9 @@ function resetTimer() {
     clearInterval(timerId);
     timerId = null;
     timeLeft = isWorkMode ? 25 * 60 : 5 * 60;
+    currentFocus = '';
     updateDisplay();
+    updateFocusDisplay();
     startButton.textContent = 'Start';
 }
 
@@ -59,7 +90,9 @@ function switchMode(mode) {
     } else {
         sunIcon.style.display = 'none';
         moonIcon.style.display = 'block';
+        currentFocus = '';
     }
+    updateFocusDisplay();
     resetTimer();
 }
 
@@ -76,4 +109,21 @@ updateDisplay();
 startButton.addEventListener('click', startTimer);
 resetButton.addEventListener('click', resetTimer);
 document.getElementById('mode-switch').addEventListener('click', () => switchMode(isWorkMode ? 'break' : 'work'));
-addTimeButton.addEventListener('click', addFiveMinutes); 
+addTimeButton.addEventListener('click', addFiveMinutes);
+
+document.getElementById('focus-submit').addEventListener('click', () => {
+    const focusInput = document.getElementById('focus-input');
+    currentFocus = focusInput.value.trim();
+    if (currentFocus) {
+        hideFocusModal();
+        updateFocusDisplay();
+        focusInput.value = '';
+        startTimer();
+    }
+});
+
+document.getElementById('focus-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        document.getElementById('focus-submit').click();
+    }
+}); 
